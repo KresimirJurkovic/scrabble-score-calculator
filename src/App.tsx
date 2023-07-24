@@ -1,11 +1,11 @@
-import { KeyboardEvent, useRef, useState } from 'react';
-import TileRow from './components/TileRow/TileRow';
-import validateInput from './utils/validations';
-import * as scrabbleApi from './api/scrabbleApi';
-import * as rules from './constants/rules';
-import { ValidationMessage, WordScore } from './types/types';
+import { KeyboardEvent, useRef, useState } from "react";
+import TileRow from "./components/TileRow/TileRow";
+import validateInput from "./utils/validations";
+import * as scrabbleApi from "./api/scrabbleApi";
+import * as rules from "./constants/rules";
+import { Keys, ValidationMessage, WordScore } from "./types/types";
 
-import styles from './app.module.css';
+import styles from "./app.module.css";
 
 export default function App() {
   const [words, setWords] = useState<WordScore>({});
@@ -17,7 +17,7 @@ export default function App() {
 
   const clearInput = () => {
     if (inputRef.current) {
-      inputRef.current.value = '';
+      inputRef.current.value = "";
     }
   };
 
@@ -27,14 +27,14 @@ export default function App() {
 
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     clearValidationMessage();
-    if (event.key === 'Enter' && inputRef.current) {
+    if (event.key === Keys.ENTER && inputRef.current) {
       fetchScore(inputRef.current.value);
       clearInput();
     }
     const keyPressed = event.key;
     const currentValue = inputRef.current?.value + keyPressed;
 
-    if (!validateInput(currentValue)) {
+    if (!validateInput(currentValue) && keyPressed != Keys.BACKSPACE) {
       setValidationMessage(ValidationMessage.INVALID_CHARACTER);
       event.preventDefault();
     }
@@ -66,7 +66,7 @@ export default function App() {
       return;
     }
 
-    if (words[word] != null) {
+    if (words[word.toLowerCase()] != null) {
       clearInput();
       setValidationMessage(ValidationMessage.WORD_ALREADY_SCORED);
       return;
@@ -85,13 +85,20 @@ export default function App() {
       setFetching(false);
     } catch (err) {
       setFetching(false);
-      console.error(err);
     }
   };
 
   return (
     <div className={styles.container}>
       <h1>Scrabble score calculator</h1>
+      <h5 style={{ color: "red" }}>
+        Red color - word is not a valid Scrabble word*
+      </h5>
+      <h5 style={{ color: "green" }}>
+        Green color - word is a valid Scrabble word*
+      </h5>
+      <h5 style={{ color: "blue" }}>Blue color - invalid input</h5>
+
       <input
         autoFocus
         type="text"
@@ -106,9 +113,7 @@ export default function App() {
       >
         Calculate score
       </button>
-      {validationMessage ? (
-        <div style={{ color: 'blue' }}>{validationMessage}</div>
-      ) : null}
+      <div className={styles.validation}>{validationMessage}</div>
       <div className={styles.rowsContainer}>{renderRowScores()}</div>
     </div>
   );

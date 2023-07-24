@@ -8,7 +8,6 @@
 
 body {
   font-family: 'Franklin Gothic', sans-serif;
-  text-transform: capitalize;
 }
 
 .container {
@@ -16,7 +15,7 @@ body {
 }
 
 .rowsContainer {
-  padding-left: 28%;
+  margin-left: 20vw;
   margin-top: 3vh;
 }
 
@@ -27,4 +26,10 @@ body {
 .button {
   cursor: pointer;
   background: none;
+  margin-left: 1vw;
+}
+
+.validation {
+  margin-top: 1vh;
+  color: blue;
 }
