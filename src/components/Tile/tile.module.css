@@ -1,0 +1,28 @@
+.tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 4vw;
+  height: 4vw;
+  color: green;
+  outline: 2px solid green;
+  font-size: 2vw;
+  font-weight: normal;
+  margin-right: 2px;
+}
+
+.score {
+  color: green;
+  padding-left: 40%;
+  font-size: 1vw;
+}
+
+.notFound.tile {
+  color: red;
+  outline: 2px solid red;
+}
+
+.notFound.score {
+  color: red;
+}

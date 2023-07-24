@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'Franklin Gothic';
+  src: url('./assets/fonts/FranklinGothic-Light.ttf') format('truetype'); /* Adjust the path and font format accordingly */
+  /* Add more src lines for different font formats (e.g., woff, woff2) if available */
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Franklin Gothic', sans-serif;
+  text-transform: capitalize;
+}
+
+.container {
+  text-align: center;
+}
+
+.rowsContainer {
+  padding-left: 28%;
+  margin-top: 3vh;
+}
+
+.rowContainer {
+  margin-top: 1vh;
+}
+
+.button {
+  cursor: pointer;
+  background: none;
+}

@@ -1,0 +1,17 @@
+.tileRow {  
+  display: flex;
+}
+
+.score {
+  display: flex;
+  align-self: center;
+  justify-content: right;
+  margin-right: 2vw;
+  font-size: 3vw;
+  width: 3vw;
+  color: green;
+}
+
+.score.notFound {
+  color: red;
+}
